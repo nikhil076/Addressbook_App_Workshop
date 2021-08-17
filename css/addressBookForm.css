@@ -72,6 +72,11 @@ body{
     opacity: 1;
 }
 
+#zipCode {
+    width: 50%;
+    height: 46px;
+}
+
 .form-head{
     display: flex;
     flex-direction: row;
@@ -87,4 +92,112 @@ body{
     padding-bottom: 10px;
     background-color: #008CFF;
     border-radius: 10px;
+}
+
+.row-content{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+    align-items: left;
+    border: 0px solid blue;
+}
+
+.inlineContent{
+    margin-left: 0px;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 0px 0px;
+}
+
+#cityAndState{
+    margin-left: 0px;
+    padding: 0px 0px;
+}
+
+select{
+    width: 23%;
+    margin-right: 8px;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    resize: vertical;
+    font: normal normal normal 16px Roboto;
+    letter-spacing: 0px;
+    color: #42525f;
+    background-color: transparent;
+}
+
+.label{
+    min-width: 140px;
+}
+
+label{
+    padding: 12px 12px 12px 0;
+    display: inline-block;
+}
+
+.inlineText{
+    font-size: 17px;
+    color: #42515f;
+    opacity: 1;
+    font-family: Roboto;
+}
+
+
+.text{
+    font-size: 16px;
+    color: #42515f;
+    opacity: 1;
+    font-family: Roboto;
+}
+
+.input{
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    resize: vertical;
+}
+
+error-output{
+    margin-left: 10px;
+    font-size: 12px;
+    font-style: italic;
+    color: red;
+}
+
+.text-error-new{
+    margin-left: 10px;
+    font-size: 12px;
+    font-style: italic;
+    color: green;
+}
+
+address-error-output{
+    margin-left: 10px;
+    font-size: 12px;
+    font-style: italic;
+    color: red;
+}
+
+.address-text-error-new{
+    margin-left: 10px;
+    font-size: 12px;
+    font-style: italic;
+    color: green;
+}
+
+phoneNumber-error-output{
+    margin-left: 10px;
+    font-size: 12px;
+    font-style: italic;
+    color: red;
+}
+
+.phoneNumber-text-error-new{
+    margin-left: 10px;
+    font-size: 12px;
+    font-style: italic;
+    color: green;
 }
