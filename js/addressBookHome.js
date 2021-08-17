@@ -1,4 +1,5 @@
 let addressBookList;
+
 window.addEventListener('DOMContentLoaded', (event) => {
     addressBookList = getAddressBookDataFromStorage();
     document.querySelector(".address-count").textContent = addressBookList.length;
@@ -46,4 +47,11 @@ const remove = (node) => {
     document.querySelector(".address-count").textContent = addressBookList.length;
     createInnerHTML();
     location.reload();
+}
+
+const update = (node) => {
+    let addressBookData = addressBookList.find(addressData => addressData._id == node.id);
+    if (!addressBookData) return;
+    localStorage.setItem('editAddress', JSON.stringify(addressBookData));
+    window.location = "../pages/addressBookForm.html";
 }
