@@ -78,7 +78,6 @@ class AddressBookData {
 
 let isUpdate = false;
 let addressBookObj = {};
-
 window.addEventListener('DOMContentLoaded', (event) => {
 
     const name = document.querySelector('#name');
