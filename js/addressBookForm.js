@@ -140,6 +140,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
             phoneNumberTextError.textContent = e;
         }
     });
+
+    checkForUpdate();
 });
 
 const save = () => {
@@ -147,6 +149,8 @@ const save = () => {
     try {
         setAddressBookObject();
         createAndUpdateStorage();
+
+        resetForm();
         window.location = "../pages/addressBookHome.html";
     } catch (e) {
         alert("Oops!!! There's an error ======> " + e);
@@ -253,4 +257,46 @@ const getInputValueById = (id) => {
 const setValue = (id, value) => {
     const element = document.querySelector(id);
     element.value = value;
+}
+
+
+const checkForUpdate = () => {
+    const addressBookJson = localStorage.getItem('editAddress');
+    isUpdate = addressBookJson ? true : false;
+    if (!isUpdate) return;
+    addressBookObj = JSON.parse(addressBookJson);
+    setForm();
+}
+
+const setForm = () => {
+    setValue('#name', addressBookObj._name);
+    setValue('#phoneNumber', addressBookObj._phoneNumber);
+    setValue('#address', addressBookObj._address);
+    setValue('#city', addressBookObj._city);
+    setValue('#state', addressBookObj._state);
+    setValue('#zipCode', addressBookObj._zip);
+}
+
+const resetForm = () => {
+    setValue('#name', '');
+    setValue('#phoneNumber', '');
+    setValue('#address', '');
+    setValue('#city', '');
+    setValue('#state', '');
+    setValue('#zipCode', '');
+
+    const textError = document.querySelector('.text-error');
+    const textErrorNew = document.querySelector('.text-error-new');
+    textError.textContent = "";
+    textErrorNew.textContent = "";
+
+    const addressTextError = document.querySelector('.address-text-error');
+    const addressTextErrorNew = document.querySelector('.address-text-error-new');
+    addressTextError.textContent = "";
+    addressTextErrorNew.textContent = "";
+
+    const phoneNumberTextError = document.querySelector('.phoneNumber-text-error');
+    const phoneNumberTextErrorNew = document.querySelector('.phoneNumber-text-error-new');
+    phoneNumberTextError.textContent = "";
+    phoneNumberTextErrorNew.textContent = "";
 }
