@@ -69,6 +69,11 @@ class AddressBookData {
     set zip(zip) {
         this._zip = zip;
     }
+
+    toString() {
+        return "Name : " + this._name + ", Phone Number : " + this._phoneNumber + ", Address : " + this._address + ", City : " + this._city
+            + ", State : " + this._state + ", Zip : " + this._zip;
+    }
 }
 
 window.addEventListener('DOMContentLoaded', (event) => {
