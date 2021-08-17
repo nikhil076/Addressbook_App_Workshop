@@ -51,3 +51,40 @@ body{
 *{
     box-sizing: border-box;
 }
+
+.form-content{
+    min-height: calc(100%-80px);
+    background-color: #f7f7f7;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 0px solid green;
+}
+
+.form{
+    margin-top: 50px;
+    width: 55%;
+    padding: 44px 60px;
+    background: #ffffff 0% 0% no-repeat padding-box;
+    box-shadow: 0px 3px 6px #00000029;
+    border: 1px solid lightskyblue;
+    border-radius: 8px;
+    opacity: 1;
+}
+
+.form-head{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 20px;
+    font: normal normal normal 28px/37px Roboto;  
+    letter-spacing: 0px;
+    color: #ffffff;
+    text-transform: capitalize;
+    opacity: 1;
+    padding-left: 237px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background-color: #008CFF;
+    border-radius: 10px;
+}
