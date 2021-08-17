@@ -1,5 +1,4 @@
 let addressBookList;
-
 window.addEventListener('DOMContentLoaded', (event) => {
     addressBookList = getAddressBookDataFromStorage();
     document.querySelector(".address-count").textContent = addressBookList.length;
