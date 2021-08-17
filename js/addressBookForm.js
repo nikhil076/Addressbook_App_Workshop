@@ -142,7 +142,6 @@ window.addEventListener('DOMContentLoaded', (event) => {
 });
 
 const save = () => {
-
     try {
         setAddressBookObject();
         createAndUpdateStorage();
