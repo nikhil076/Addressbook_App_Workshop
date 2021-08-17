@@ -69,3 +69,92 @@ class AddressBookData {
     set zip(zip) {
         this._zip = zip;
     }
+}
+
+window.addEventListener('DOMContentLoaded', (event) => {
+
+    const name = document.querySelector('#name');
+    const textError = document.querySelector('.text-error');
+    const textErrorNew = document.querySelector('.text-error-new');
+
+    name.addEventListener('input', function () {
+        if (name.value.length == 0) {
+            textError.textContent = "";
+            return;
+        }
+
+        try {
+            (new AddressBookData()).name = name.value;
+            textError.textContent = "";
+            textErrorNew.textContent = "valid";
+        } catch (e) {
+            textErrorNew.textContent = "";
+            textError.textContent = e;
+        }
+    });
+
+    const address = document.querySelector('#address');
+    const addressTextError = document.querySelector('.address-text-error');
+    const addressTextErrorNew = document.querySelector('.address-text-error-new');
+
+    address.addEventListener('input', function () {
+        if (address.value.length == 0) {
+            addressTextError.textContent = "";
+            return;
+        }
+
+        try {
+            (new AddressBookData()).address = address.value;
+            addressTextError.textContent = "";
+            addressTextErrorNew.textContent = "valid";
+        } catch (e) {
+            addressTextErrorNew.textContent = "";
+            addressTextError.textContent = e;
+        }
+    });
+
+    const phoneNumber = document.querySelector('#phoneNumber');
+    const phoneNumberTextError = document.querySelector('.phoneNumber-text-error');
+    const phoneNumberTextErrorNew = document.querySelector('.phoneNumber-text-error-new');
+
+    phoneNumber.addEventListener('input', function () {
+        if (phoneNumber.value.length == 0) {
+            phoneNumberTextError.textContent = "";
+            return;
+        }
+
+        try {
+            (new AddressBookData()).phoneNumber = phoneNumber.value;
+            phoneNumberTextError.textContent = "";
+            phoneNumberTextErrorNew.textContent = "valid";
+        } catch (e) {
+            phoneNumberTextErrorNew.textContent = "";
+            phoneNumberTextError.textContent = e;
+        }
+    });
+});
+
+const save = () => {
+
+    try {
+        createaAddressBook();
+    } catch (e) {
+        alert("Oops!!! There's an error ======> " + e);
+        alert("Please correct the details & try again...!!!");
+        return;
+    }
+}
+
+const createaAddressBook = () => {
+    let addressBookData = new AddressBookData();
+
+    addressBookData.id = createNewAddressId();
+    addressBookData.name = getInputValueById('#name');
+    addressBookData.phoneNumber = getInputValueById('#phoneNumber');
+    addressBookData.address = getInputValueById('#address');
+    addressBookData.city = getInputValueById('#city');
+    addressBookData.state = getInputValueById('#state');
+    addressBookData.zip = getInputValueById('#zipCode');
+    alert("Object created successfully with id : " + addressBookData._id + " -----> " + addressBookData.toString());
+    return addressBookData;
+}
