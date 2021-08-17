@@ -20,12 +20,57 @@
             </div>
         </div>
     </header>
+
     <div class="form-content">
-        <form class="form" action="#" onreset="resetForm()" onsubmit="save()">
-            <div class="form-head-content">
-                <div class="form-head">Person Address Form</div>
-                <div class="form-logo-content">
-                    <a href="./home.html" ><img src="../assets/images/cancel.jpeg" style="height: 46px;"></a>
+        <form class="form" action="#" onsubmit="save(); return false">
+            <div class="form-head">
+                ADDRESS BOOK FORM
+                <a href="../pages/addressBookHome.html"><img class="logo-content-img-head" src="../assets/images/cancel.jpeg" alt=""></a>
+            </div>
+            <div class="row-content">
+                <label class="label text" for="name">Name</label>
+                <input class="input" type="text" id="name" name="name" placeholder="Your full name..." required>
+                <error-output class="text-error" for="text"></error-output>
+                <error-output class="text-error-new" for="text"></error-output>
+            </div>
+            <div class="row-content">
+                <label class="label text" for="phoneNumber">Phone Number</label>
+                <input class="input" type="number" id="phoneNumber" name="phoneNumber"
+                    placeholder="Your Phone Number..." required>
+                <phoneNumber-error-output class="phoneNumber-text-error" for="text"></phoneNumber-error-output>
+                <phoneNumber-error-output class="phoneNumber-text-error-new" for="text"></phoneNumber-error-output>
+            </div>
+            <div class="row-content">
+                <label class="label text" for="address">Address</label>
+                <textarea id="address" class="input" name="address" placeholder="Your complete address..."
+                    style="height:100px" required></textarea>
+                <address-error-output class="address-text-error" for="text"></address-error-output>
+                <address-error-output class="address-text-error-new" for="text"></address-error-output>
+            </div>
+            <div class="row-content">
+                <div class="inlineContent">
+                    <label class="label inlineText"
+                        for="city">City</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <label class="label inlineText"
+                        for="state">State</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <label class="label inlineText" for="zipCode">Zip Code</label>
+                </div>
+
+                <div id="cityAndState">
+                    <select id="city" name="City" required>
+                        <option value="" disabled selected>Select city</option>
+                        <option value="Mumbai">Mumbai</option>
+                        <option value="Pune">Pune</option>
+                        <option value="Bangalore">Bangalore</option>
+                        <option value="Bangalore">Indore</option>
+                    </select>
+                    <select id="state" name="State" required>
+                        <option value="" disabled selected>Select state</option>
+                        <option value="Maharashtra">Maharashtra</option>
+                        <option value="Karnataka">Karnataka</option>
+                        <option value="Madhya Pradesh">Madhya Pradesh</option>
+                    </select>
+                    <input class="input" type="number" id="zipCode" name="zipCode" placeholder="Zip Code..." required>
                 </div>
             </div>
         </form>
