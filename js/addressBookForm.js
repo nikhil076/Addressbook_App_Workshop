@@ -125,6 +125,10 @@ function createAndUpdateStorage() {
 function createAndUpdateAddressBookInServer() {
     let postUrl = site_properties.server_url
     let methodCall = "POST"
+    if(isUpdate){
+        methodCall = "PUT"
+        postUrl = postUrl + addressBookObj.id.toString()
+    }
     makePromiseCall(methodCall, postUrl, true, addressBookObj)
     .then(
       (responseText) =>
