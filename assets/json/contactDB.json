@@ -8,15 +8,6 @@
             "_city": "Mumbai",
             "_state": "Maharashtra",
             "_zip": "421601"
-        },
-        {
-            "id": 2,
-            "_name": "Matt",
-            "_phoneNumber": "91 8794568795",
-            "_address": "konichiwa",
-            "_city": "Indore",
-            "_state": "Madhya Pradesh",
-            "_zip": "613211"
         }
     ]
 } 
