@@ -1,13 +1,40 @@
 let addressBookList;
 window.addEventListener('DOMContentLoaded', (event) => {
-    addressBookList = getAddressBookDataFromStorage();
-    document.querySelector(".address-count").textContent = addressBookList.length;
-    createInnerHTML();
-    localStorage.removeItem('editAddress');
+    if (site_properties.use_local_storage.match("true")) {
+        getAddressBookDataFromStorage()
+      } else {
+        getAddressBookDataFromServer() 
+      }
 });
 
 const getAddressBookDataFromStorage = () => {
-    return localStorage.getItem('AddressBookList') ? JSON.parse(localStorage.getItem('AddressBookList')) : [];
+    addressBookList  = localStorage.getItem('AddressBookList') ? 
+  JSON.parse(localStorage.getItem('AddressBookList')) : []
+  procesAddressBookCount()
+  createInnerHtml()
+}
+
+function procesAddressBookCount() {
+    document.querySelector(".address-count").textContent = addressBookList.length;
+}
+
+function getAddressBookDataFromServer() {
+    makePromiseCall("GET", site_properties.server_url, true)
+      .then(
+        (responseText) =>{
+          addressBookList = JSON.parse(responseText)
+          procesAddressBookCount()
+          createInnerHtml();
+        }
+      )
+      .catch(
+        (error) =>
+          {
+              console.log("Error status"+JSON.stringify(error));
+              addressBookList = []
+              procesAddressBookCount()
+          }
+      );  
 }
 
 const createInnerHTML = () => {
