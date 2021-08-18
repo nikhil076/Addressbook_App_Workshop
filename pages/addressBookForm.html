@@ -8,6 +8,8 @@
     <title>Address Book</title>
     <link rel="stylesheet" href="../css/addressBookForm.css" />
     <script src="../js/addressBookForm.js" defer></script>
+    <script src="../js/site_properties.js"></script>
+    <script src="../js/utility.js"></script>
 </head>
 
 <body>
@@ -71,6 +73,8 @@
                         <option value="Madhya Pradesh">Madhya Pradesh</option>
                     </select>
                     <input class="input" type="number" id="zipCode" name="zipCode" placeholder="Zip Code..." required>
+                    <zip-error-output class="zip-text-error" for="text"></zip-error-output>
+                    <zip-error-output class="zip-text-error-new" for="text"></zip-error-output>
                 </div>
             </div>
             <div class="buttonParent">

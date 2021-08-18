@@ -1,83 +1,6 @@
-class AddressBookData {
-
-    get id() {
-        return this._id;
-    }
-
-    set id(id) {
-        this._id = id;
-    }
-
-    get name() {
-        return this._name;
-    }
-
-    set name(name) {
-        let nameRegex = RegExp('^[A-Z]{1}[a-zA-Z\\s]{2,}$');
-        if (nameRegex.test(name)) {
-            this._name = name;
-        }
-        else {
-            throw 'Name is incorrect!';
-        }
-    }
-
-    get phoneNumber() {
-        return this._phoneNumber;
-    }
-
-    set phoneNumber(phoneNumber) {
-        let phoneNumberRegex = RegExp('^([1-9]{1}[0-9]{9}|[9]{1}[1]{1}[1-9]{1}[0-9]{9}|/[+]{1}[9]{1}[1]{1}[1-9]{1}[0-9]{9})$');
-        if (phoneNumberRegex.test(phoneNumber)) {
-            this._phoneNumber = phoneNumber;
-        }
-        else throw 'Phone Number is incorrect!';
-    }
-
-    get address() {
-        return this._address;
-    }
-
-    set address(address) {
-        let addressRegex = RegExp('^[a-zA-Z0-9]{3,}\\s[a-zA-Z0-9]{3,}([ ]|[a-zA-Z0-9]{3,})*?$');
-        if (addressRegex.test(address)) {
-            this._address = address;
-        }
-        else throw 'Address is incorrect!';
-    }
-
-    get city() {
-        return this._city;
-    }
-
-    set city(city) {
-        this._city = city;
-    }
-
-    get state() {
-        return this._state;
-    }
-
-    set state(state) {
-        this._state = state;
-    }
-
-    get zip() {
-        return this._zip;
-    }
-
-    set zip(zip) {
-        this._zip = zip;
-    }
-
-    toString() {
-        return "Name : " + this._name + ", Phone Number : " + this._phoneNumber + ", Address : " + this._address + ", City : " + this._city
-            + ", State : " + this._state + ", Zip : " + this._zip;
-    }
-}
-
 let isUpdate = false;
 let addressBookObj = {};
+let server_url = " http://localhost:3000/EmployeePayrollDB/";
 window.addEventListener('DOMContentLoaded', (event) => {
 
     const name = document.querySelector('#name');
@@ -86,17 +9,16 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
     name.addEventListener('input', function () {
         if (name.value.length == 0) {
-            textError.textContent = "";
+            setTextValue(".name-error","")
             return;
         }
 
         try {
             (new AddressBookData()).name = name.value;
-            textError.textContent = "";
-            textErrorNew.textContent = "valid";
+            checkName(name.value)
+            setTextValue(".name-error","")
         } catch (e) {
-            textErrorNew.textContent = "";
-            textError.textContent = e;
+            setTextValue(".name-error",e)
         }
     });
 
@@ -113,7 +35,6 @@ window.addEventListener('DOMContentLoaded', (event) => {
         try {
             (new AddressBookData()).address = address.value;
             addressTextError.textContent = "";
-            addressTextErrorNew.textContent = "valid";
         } catch (e) {
             addressTextErrorNew.textContent = "";
             addressTextError.textContent = e;
@@ -126,17 +47,16 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
     phoneNumber.addEventListener('input', function () {
         if (phoneNumber.value.length == 0) {
-            phoneNumberTextError.textContent = "";
+            setTextValue(".phoneNumber-text-error","")
             return;
         }
 
         try {
             (new AddressBookData()).phoneNumber = phoneNumber.value;
-            phoneNumberTextError.textContent = "";
-            phoneNumberTextErrorNew.textContent = "valid";
+            checkNumber(phoneNumber.value)
+            setTextValue(".phoneNumber-text-error","")
         } catch (e) {
-            phoneNumberTextErrorNew.textContent = "";
-            phoneNumberTextError.textContent = e;
+            setTextValue(".phoneNumber-text-error",e)
         }
     });
 
@@ -183,12 +103,12 @@ const createaAddressBook = () => {
 function createAndUpdateStorage() {
     let addressBookList = JSON.parse(localStorage.getItem("AddressBookList"));
     if (addressBookList) {
-        let addressBookData = addressBookList.find(addressData => addressData._id == addressBookObj._id);
+        let addressBookData = addressBookList.find(addressData => addressData.id == addressBookObj.id);
         if (!addressBookData) {
             addressBookList.push(createAddressBookData());
         } else {
-            const index = addressBookList.map(addressData => addressData._id).indexOf(addressBookData._id);
-            addressBookList.splice(index, 1, createAddressBookData(addressBookData._id));
+            const index = addressBookList.map(addressData => addressData.id).indexOf(addressBookData.id);
+            addressBookList.splice(index, 1, createAddressBookData(addressBookData.id));
         }
 
     } else {
@@ -298,3 +218,8 @@ const resetForm = () => {
     phoneNumberTextError.textContent = "";
     phoneNumberTextErrorNew.textContent = "";
 }
+
+function setTextValue(component,problem){
+    let textError = document.querySelector(component);
+    textError.textContent = problem
+} 
