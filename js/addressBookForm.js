@@ -66,10 +66,14 @@ window.addEventListener('DOMContentLoaded', (event) => {
 const save = () => {
     try {
         setAddressBookObject();
-        createAndUpdateStorage();
-
-        resetForm();
-        window.location = "../pages/addressBookHome.html";
+        if (site_properties.use_local_storage.match("true")) {
+            resetForm()
+              createAndUpdateStorage()
+              resetForm()
+              window.location.replace(site_properties.home_page)
+            } else {
+              createAndUpdateAddressBookInServer()
+            }
     } catch (e) {
         alert("Oops!!! There's an error ======> " + e);
         alert("Please correct the details & try again...!!!");
@@ -105,18 +109,36 @@ function createAndUpdateStorage() {
     if (addressBookList) {
         let addressBookData = addressBookList.find(addressData => addressData.id == addressBookObj.id);
         if (!addressBookData) {
-            addressBookList.push(createAddressBookData());
+            addressBookList.push(addressBookObj);
         } else {
             const index = addressBookList.map(addressData => addressData.id).indexOf(addressBookData.id);
-            addressBookList.splice(index, 1, createAddressBookData(addressBookData.id));
+            addressBookList.splice(index, 1, addressBookObj);
         }
 
     } else {
-        addressBookList = [createAddressBookData()];
+        addressBookList = [addressBookObj];
     }
     alert("Local Storage Updated Successfully!\nTotal Addresses ----> " + addressBookList.length);
     localStorage.setItem("AddressBookList", JSON.stringify(addressBookList));
 }
+
+function createAndUpdateAddressBookInServer() {
+    let postUrl = site_properties.server_url
+    let methodCall = "POST"
+    makePromiseCall(methodCall, postUrl, true, addressBookObj)
+    .then(
+      (responseText) =>
+      {
+        resetForm()
+        window.location.replace(site_properties.home_page)
+              }
+          )
+          .catch(
+            (error) =>{
+              throw error
+            }
+          );
+  }
 
 const createAddressBookData = (id) => {
     let addresBookData = new AddressBookData();
