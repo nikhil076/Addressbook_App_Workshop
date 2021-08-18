@@ -1,0 +1,22 @@
+{
+    "ContactDB": [
+        {
+            "id": 1,
+            "_name": "Nikhil",
+            "_phoneNumber": "91 8899775566",
+            "_address": "111 street",
+            "_city": "Mumbai",
+            "_state": "Maharashtra",
+            "_zip": "421601"
+        },
+        {
+            "id": 2,
+            "_name": "Matt",
+            "_phoneNumber": "91 8794568795",
+            "_address": "222 street",
+            "_city": "Bangalore",
+            "_state": "Karnataka",
+            "_zip": "613211"
+        }
+    ]
+} 
